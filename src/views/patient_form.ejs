@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Fill Details</title>
+    <link rel="stylesheet" href="/patient_form.css" />
+  </head>
+  <body>
+    <!-- 
+        name
+        location
+        disease type(optional)
+        patient name
+        age
+        gender
+        symptoms
+        Test used
+    -->
+    <div class="logout-btn">
+      <div>User Name : <%=CurrentUser.name%></div>
+      <button class="logout">LogOut</button>
+    </div>
+    <form action="/patient_form/<%=CurrentUser._id%>" method="POST" >
+        <!-- this is disease type which is optional -->
+        <!-- <input type="radio" placeholder="malaria" value="Malaria"/> -->
+        <label for="patientName" >Patient Name</label>
+        <input id="patientName" name="patientName" type="text" placeholder="Name" required/>
+        
+        <label for="age" >Age</label>
+        <input id="age" name="age" type="number" placeholder="1" required/>
+            
+        <label for="district">District</label>
+        <input id="district" name="district" type="text" placeholder="location" value="" required/>
+        
+        <fieldset>
+            <legend>Patient's gender</legend>
+            <div>
+              <input type="radio" name="gender" id="Male" />
+              <label for="Male">Male</label>
+            </div>
+      
+            <div>
+              <input type="radio" name="gender" id="Female" />
+              <label for="Female">Female</label>
+            </div>
+      
+            <div>
+              <input type="radio" name="gender" id="Others" />
+              <label for="Others">Others</label>
+            </div>
+        </fieldset>
+
+        <label for="test" >Test Name</label>
+        <input id="test" name="test" type="text" placeholder=" " value="" required/>
+
+        <label for="symptoms">Symptoms</label>
+        <textarea id="symptoms" name="symptoms" rows="5" placeholder="Symptoms which are present"></textarea>
+
+        <div>
+            <label for="date" >Date of testing:</label>
+            <input id="date" name="date" type="date" value="2023-02-25" required/>
+        </div>
+          <input type="submit" class="button" value="Submit"/>
+    </form>
+<!--     
+
+    <input type="email" placeholder="Your email" value="" />
+
+    <input type="tel" placeholder="Your phonenumber" value="" />
+
+    <input type="url" placeholder="www.google.com" value="" />
+
+    <input type="password" placeholder="Your password" />
+
+    <input type="search" placeholder="Search all the things" value="" />
+
+    <input type="text" disabled placeholder="Your name" value="" />
+
+    <input
+      type="email"
+      placeholder="Your email"
+      value="this is not a email adress"
+      required
+    />
+
+    <input
+      type="email"
+      placeholder="Your email"
+      value="nice@forms.com"
+      required
+    />
+
+    <textarea rows="5" placeholder="Your message"></textarea>
+
+    <select>
+      <option>Please select a value</option>
+      <option>Option 1</option>
+      <option>Option 2</option>
+    </select>
+
+    <input type="file" />
+
+    <input type="range" min="0" max="15" />
+
+    <div>
+      <input type="month" value="2018-05" />
+    </div>
+
+    <div>
+      <input type="week" value="2017-W01" />
+    </div>
+
+    <div>
+      <input type="radio" name="radio" id="r-2" />
+      <label for="r-2">
+        Radio button with label
+        <small>Radio can have additional information</small>
+      </label>
+    </div>
+
+    <div>
+      <input type="checkbox" id="check-2" />
+      <label for="check-2">
+        Checkbox with label
+        <small>I am additional information regarding this field</small>
+      </label>
+    </div>
+
+    <fieldset>
+      <legend>Select your favorite framework</legend>
+      <div>
+        <input type="radio" name="radio" id="react" />
+        <label for="react">React</label>
+      </div>
+
+      <div>
+        <input type="radio" name="radio" id="vue" />
+        <label for="vue">Vue</label>
+      </div>
+
+      <div>
+        <input type="radio" name="radio" id="angular" />
+        <label for="angular">Angular</label>
+      </div>
+    </fieldset>
+
+    <fieldset>
+      <legend>Select your favorite languages</legend>
+      <div>
+        <input type="checkbox" id="css" />
+        <label for="css">CSS</label>
+      </div>
+
+      <div>
+        <input type="checkbox" id="html" />
+        <label for="html">HTML</label>
+      </div>
+
+      <div>
+        <input type="checkbox" id="js" />
+        <label for="js">Javascript</label>
+      </div>
+    </fieldset>
+
+    <div>
+      <input type="number" placeholder="1234" />
+    </div>
+
+    <div>
+      <input type="color" />
+    </div> -->
+  </body>
+</html>
