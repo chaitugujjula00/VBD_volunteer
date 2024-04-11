@@ -33,7 +33,6 @@ app.use(express.urlencoded({extended:false}))
 app.get('/',(req,res)=>{
     res.render("login_signup");
 })
-
 app.post("/signup", async (req, res) => {
     const registerme = new User();``
     registerme.name = req.body.name;
@@ -64,7 +63,7 @@ app.post("/signup", async (req, res) => {
 app.post("/", async (req, res) => {
     const useremail = req.body.email;
     const userpassword = req.body.password;
-    console.log(useremail);
+    const longitude=req.body.longitude;
     const userform = await User.findOne({ email: useremail });
     console.log(userform);
     // if(userform){let actualpassword = userform.password;}
@@ -98,6 +97,8 @@ app.post("/", async (req, res) => {
 
 app.get("/patient_form/:id",async(req,res)=>{
   const CurrentUser= await User.findById(req.params.id);
+  // navigator.geolocation.getCurrentPosition((location)=>{
+  //   console.log(location.coords.latitude)})
   res.render('patient_form',{CurrentUser})
 })
 
@@ -107,9 +108,11 @@ app.post("/patient_form/:id",async(req,res)=>{
   
   newPatient.name=req.body.patientName;
   newPatient.age=req.body.age;
+  newPatient.aadhar=req.body.aadhar;
   newPatient.district=req.body.district;
   newPatient.gender=req.body.gender;
   newPatient.test=req.body.test;
+  newPatient.report=req.body.report;
   newPatient.Symptoms=req.body.symptoms;
   newPatient.date=req.body.date;
   newPatient.volunteer_id=CurrentUser._id;
@@ -142,7 +145,6 @@ app.post("/patient_form/:id",async(req,res)=>{
     console.log(newCase);
     const savedCase = await newCase.save();
   }
-
   console.log(newPatient);
   res.redirect(`${CurrentUser._id}`);
 })

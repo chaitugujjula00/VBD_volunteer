@@ -9,6 +9,10 @@ const Patientschema = new mongoose.model('Patient',{
         type:Number,
         required:true,
     },
+    aadhar :{
+        type:String,
+        required:true,
+    },
     district :{
         type:String,
         required:true,
@@ -20,6 +24,9 @@ const Patientschema = new mongoose.model('Patient',{
     test :{
         type:String,
         required:true,
+    },
+    report:{
+        type:String,
     },
     Symptoms :{
         type:String,
