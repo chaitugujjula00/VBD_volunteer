@@ -12,8 +12,22 @@ mongoose.connect("mongodb+srv://ramcharan2k4:vectorbornediseases@minorproject.8k
 const User=require('./src/models/user');
 const Patient=require('./src/models/patient');
 const Case=require('./src/models/case');
-// console.log(mongoose.models);
-// const Casecheck = await Case.findOne({ Month:1 });
+
+
+function transformString(input) {
+  // Convert the input string to lowercase
+  let lowerCaseString = input.toLowerCase();
+
+  // Use a regular expression to remove the word "district" with leading and trailing spaces
+  // 'i' flag for case-insensitive match, 'g' flag for global (all occurrences) match
+  let transformedString = lowerCaseString.replace(/\s*district\s*/gi, '');
+
+  // Trim any leading or trailing spaces
+  transformedString = transformedString.trim();
+
+  // Return the transformed string
+  return transformedString;
+}
 
 // console.log(__dirname);
 // console.log(__filename);
@@ -33,6 +47,8 @@ app.use(express.urlencoded({extended:false}))
 app.get('/',(req,res)=>{
     res.render("login_signup");
 })
+
+
 app.post("/signup", async (req, res) => {
     const registerme = new User();``
     registerme.name = req.body.name;
@@ -109,7 +125,7 @@ app.post("/patient_form/:id",async(req,res)=>{
   newPatient.name=req.body.patientName;
   newPatient.age=req.body.age;
   newPatient.aadhar=req.body.aadhar;
-  newPatient.district=req.body.district;
+  newPatient.district=transformString(req.body.district);
   newPatient.gender=req.body.gender;
   newPatient.test=req.body.test;
   newPatient.report=req.body.report;
@@ -119,31 +135,32 @@ app.post("/patient_form/:id",async(req,res)=>{
 
   const savedPatient= await newPatient.save();
 
-  // const district = newPatient.district;
-  // const month = 1+newPatient.date.getMonth();
-  // const year = 1900+newPatient.date.getYear();
-  // console.log(district)
-  const district="amritsar";
-  const year=2023;
-  const month=1;
+  const district = newPatient.district;
+  const month = 1+newPatient.date.getMonth();
+  const year = 1900+newPatient.date.getYear();
   try{
-    const CasesUpdate = await Case.findOneAndUpdate(
-      { District:district,Year:year,Month:month },
-      {
-        $inc: {
-          Cases:1,
-        },
-      }
-    );
-  }catch(err){
-    console.log(err);
-    const newCase= new Case();
+    const cases=await Case.findOne({District:district,Year:year,Month:month});
+    if(cases){
+      const CasesUpdate = await Case.findOneAndUpdate(
+        { District:district,Year:year,Month:month },
+        {
+          $inc: {
+            Cases:1,
+          },
+        }
+      );
+    }
+    else{
+      const newCase= new Case();
     newCase.District=district;
     newCase.Year=year;
     newCase.Month=month;
     newCase.cases=1;
     console.log(newCase);
     const savedCase = await newCase.save();
+    }
+  }catch(err){
+    console.log(err);
   }
   console.log(newPatient);
   res.redirect(`${CurrentUser._id}`);
