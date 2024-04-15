@@ -1,5 +1,5 @@
 
-const { Number } = require('mongodb');
+// const { Number } = require('mongodb');
 const mongoose = require('mongoose')
 
 const Caseschema = new mongoose.model('Case',{
@@ -7,7 +7,7 @@ const Caseschema = new mongoose.model('Case',{
             type:String,
         },
         Year:{
-            type:Number
+            type:Number,
         },
         Month:{
             type:Number
