@@ -1,5 +1,5 @@
 
-const { Decimal128 } = require('mongodb');
+const { Number } = require('mongodb');
 const mongoose = require('mongoose')
 
 const Caseschema = new mongoose.model('Case',{
@@ -13,58 +13,58 @@ const Caseschema = new mongoose.model('Case',{
             type:Number
         },
         Avg_Temp: {
-            type:Decimal128
+            type:Number
         },
         Avg_Feelslike: {
-            type:Decimal128
+            type:Number
         },
         Avg_Dew: {
-            type:Decimal128
+            type:Number
         },
         Avg_Humidity: {
-            type:Decimal128
+            type:Number
         },
         Avg_Precipitation: {
-            type:Decimal128
+            type:Number
         },
         Avg_Precipitation_Probability: {
-            type:Decimal128
+            type:Number
         },
         Avg_Precipitation_Coverage: {
-            type:Decimal128
+            type:Number
         },
         Avg_Snowfall: {
-            type:Decimal128
+            type:Number
         },
         Avg_Snow_Depth: {
-            type:Decimal128
+            type:Number
         },
         Avg_Wind_Gust: {
-            type:Decimal128
+            type:Number
         },
         Avg_Wind_Speed: {
-            type:Decimal128
+            type:Number
         },
         Avg_Wind_Direction: {
-            type:Decimal128
+            type:Number
         },
         Avg_Pressure: {
-            type:Decimal128
+            type:Number
         },
         Avg_Cloud_Cover: {
-            type:Decimal128
+            type:Number
         },
         Avg_Visibility: {
-            type:Decimal128
+            type:Number
         },
         Avg_Solar_Radiation: {
-            type:Decimal128
+            type:Number
         },
         Avg_Solar_Energy: {
-            type:Decimal128
+            type:Number
         },
         Avg_UV_Index:{
-            type:Decimal128
+            type:Number
         },
         Cases:{
             type:Number
